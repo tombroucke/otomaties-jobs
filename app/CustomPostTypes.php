@@ -43,12 +43,9 @@ class CustomPostTypes
     
             # Add the post type to the site's main RSS feed:
             'show_in_feed' => true,
-    
-            # Show all posts on the post type archive:
-            'archive' => [
-                'nopaging' => true,
-            ],
-    
+            'has_archive' => false,
+            'exclude_from_search' => false,
+            'public' => true,
             # Add the post type to the 'Recently Published' section of the dashboard:
             'dashboard_activity' => true,
 
@@ -66,11 +63,11 @@ class CustomPostTypes
         ]);
     
         register_extended_taxonomy('job_category', 'job', [
-
+            'show_in_rest' => true,
         ], [
             'singular' => __('Category', 'otomaties-jobs'),
             'plural'   => __('Categories', 'otomaties-jobs'),
-            'slug'     => 'story-genre'
+            'slug'     => 'job_category'
         ]);
     }
 }

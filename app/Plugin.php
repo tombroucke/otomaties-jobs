@@ -56,6 +56,7 @@ class Plugin
 
         $this->loadDependencies();
         $this->setLocale();
+        $this->addShortcodes();
         $this->defineAdminHooks();
         $this->definePublicHooks();
         $this->registerPostTypes();
@@ -98,6 +99,11 @@ class Plugin
         $i18n = new i18n();
 
         $this->loader->add_action('pluginsLoaded', $i18n, 'load_plugin_textdomain');
+    }
+
+    private function addShortcodes() {
+        $shortcodes = new Shortcodes();
+        add_shortcode('jobs', [$shortcodes, 'jobs']);
     }
 
     /**

@@ -37,7 +37,7 @@ class Frontend
         $this->version = $version;
     }
 
-    private function shortcode() {
+    public function shortcode() {
         $shortcode = get_field('jobs_apply_shortcode');
         if (!$shortcode) {
             $shortcode = get_field('jobs_default_apply_shortcode', 'option');
@@ -50,8 +50,8 @@ class Frontend
         $shortcode = $this->shortcode();
         if (is_singular('job') && $shortcode) {
             ob_start();
-            include(__DIR__ . '/partials/apply-form.php');
-            $content .= ob_get_clean();
+            include(__DIR__ . '/../../templates/apply-form.php');
+            $content = $content . apply_filters('jobs_apply_form_html', ob_get_clean(), $shortcode);
         }
         return $content;
     }
