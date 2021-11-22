@@ -1,18 +1,6 @@
 <?php
 
 namespace Otomaties\Jobs;
-/**
- * Define the internationalization functionality
- *
- * Loads and defines the internationalization files for this plugin
- * so that it is ready for translation.
- *
- * @link       http://example.com
- * @since      1.0.0
- *
- * @package    Otomaties_Jobs
- * @subpackage Otomaties_Jobs/includes
- */
 
 /**
  * Define the internationalization functionality.
@@ -20,29 +8,18 @@ namespace Otomaties\Jobs;
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @since      1.0.0
- * @package    Otomaties_Jobs
- * @subpackage Otomaties_Jobs/includes
- * @author     Your Name <email@example.com>
  */
-class i18n {
+
+class I18n
+{
 
 
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    1.0.0
-	 */
-	public function load_plugin_textdomain() {
-
-		load_plugin_textdomain(
-			'otomaties-jobs',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
-
-	}
-
-
-
+    /**
+     * Load the plugin text domain for translation.
+     *
+     */
+    public function loadTextdomain()
+    {
+        load_plugin_textdomain('otomaties-jobs', false, dirname(plugin_basename(__FILE__), 2) . '/languages/');
+    }
 }

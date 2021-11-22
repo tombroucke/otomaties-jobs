@@ -2,8 +2,15 @@
 
 namespace Otomaties\Jobs;
 
-use Otomaties\Jobs\Admin\Admin;
-use Otomaties\Jobs\Frontend\Frontend;
+/**
+ * The core plugin class.
+ *
+ * This is used to define internationalization, admin-specific hooks, and
+ * public-facing site hooks.
+ *
+ * Also maintains the unique identifier of this plugin as well as the current
+ * version of the plugin.
+ */
 
 class Plugin
 {
@@ -12,29 +19,23 @@ class Plugin
      * The loader that's responsible for maintaining and registering all hooks that power
      * the plugin.
      *
-     * @since    1.0.0
-     * @access   protected
      * @var      Loader    $loader    Maintains and registers all hooks for the plugin.
      */
     protected $loader;
 
     /**
-     * The unique identifier of this plugin.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      string    $plugin    The string used to uniquely identify this plugin.
-     */
-    protected $plugin;
-
-    /**
      * The current version of the plugin.
      *
-     * @since    1.0.0
-     * @access   protected
      * @var      string    $version    The current version of the plugin.
      */
     protected $version;
+
+    /**
+     * The name of the plugin
+     *
+     * @var [type]
+     */
+    protected $pluginName;
 
     /**
      * Define the core functionality of the plugin.
@@ -43,45 +44,17 @@ class Plugin
      * Load the dependencies, define the locale, and set the hooks for the admin area and
      * the public-facing side of the site.
      *
-     * @since    1.0.0
      */
-    public function __construct()
+    public function __construct($pluginData)
     {
-        if (defined('OTOMATIES_JOBSVERSION')) {
-            $this->version = OTOMATIES_JOBSVERSION;
-        } else {
-            $this->version = '1.0.0';
-        }
-        $this->plugin = 'otomaties-jobs';
-
-        $this->loadDependencies();
-        $this->setLocale();
-        $this->addShortcodes();
-        $this->defineAdminHooks();
-        $this->definePublicHooks();
-        $this->registerPostTypes();
-    }
-
-    /**
-     * setL the required dependencies for this plugin.
-     *
-     * Include the following files that make up the plugin:
-     *
-     * - Loader. Orchestrates the hooks of the plugin.
-     * - i18n. Defines internationalization functionality.
-     * - Admin. Defines all hooks for the admin area.
-     * - Public. Defines all hooks for the public side of the site.
-     *
-     * Create an instance of the loader which will be used to register the hooks
-     * with WordPress.
-     *
-     * @since    1.0.0
-     * @access   private
-     */
-    private function loadDependencies()
-    {
-
+        $this->version = $pluginData['Version'];
+        $this->pluginName = $pluginData['pluginName'];
         $this->loader = new Loader();
+
+        $this->setLocale();
+        $this->addPostTypes();
+        $this->defineAdminHooks();
+        $this->defineFrontendHooks();
     }
 
     /**
@@ -90,76 +63,59 @@ class Plugin
      * Uses the i18n class in order to set the domain and to register the hook
      * with WordPress.
      *
-     * @since    1.0.0
-     * @access   private
      */
     private function setLocale()
     {
 
-        $i18n = new i18n();
+        $plugin_i18n = new I18n();
 
-        $this->loader->add_action('pluginsLoaded', $i18n, 'load_plugin_textdomain');
+        $this->loader->add_action('plugins_loaded', $plugin_i18n, 'loadTextdomain');
     }
 
-    private function addShortcodes() {
-        $shortcodes = new Shortcodes();
-        add_shortcode('jobs', [$shortcodes, 'jobs']);
+    private function addPostTypes()
+    {
+        $customPostTypes = new CustomPostTypes();
+        $this->loader->add_action('init', $customPostTypes, 'addJobs');
+        $this->loader->add_action('acf/init', $customPostTypes, 'addJobFields');
     }
 
     /**
-     * Register all of the hooks related to the admin area functionality
+     * Register all of the hooks related to the admin-facing functionality
      * of the plugin.
      *
-     * @since    1.0.0
-     * @access   private
      */
     private function defineAdminHooks()
     {
-        $admin = new Admin($this->plugin(), $this->getVersion());
 
-        $this->loader->add_action('init', $admin, 'jobFields');
-        $this->loader->add_action('init', $admin, 'optionsPage');
+        $admin = new Admin($this->getPluginName(), $this->getVersion());
+        $this->loader->add_action('admin_enqueue_scripts', $admin, 'enqueueStyles');
+        $this->loader->add_action('admin_enqueue_scripts', $admin, 'enqueueScripts');
+        $this->loader->add_action('acf/init', $admin, 'optionsPage');
+        $this->loader->add_action('acf/init', $admin, 'addOptionsPageFields');
     }
 
     /**
      * Register all of the hooks related to the public-facing functionality
      * of the plugin.
      *
-     * @since    1.0.0
-     * @access   private
      */
-    private function definePublicHooks()
+    private function defineFrontendHooks()
     {
-        $frontend = new Frontend($this->plugin(), $this->getVersion());
-        $this->loader->add_filter('the_content', $frontend, 'applyForm');
-    }
+        $frontend = new Frontend($this->getPluginName(), $this->getVersion());
+        $this->loader->add_action('wp_enqueue_scripts', $frontend, 'enqueueStyles');
+        $this->loader->add_action('wp_enqueue_scripts', $frontend, 'enqueueScripts');
 
-    public function registerPostTypes()
-    {
-        $customPostTypes = new CustomPostTypes($this->plugin(), $this->getVersion());
-        $this->loader->add_action('init', $customPostTypes, 'registerJob');
+        $this->loader->add_filter('the_content', $frontend, 'publishJobForm');
+        $this->loader->add_action('template_redirect', $frontend, 'publishJob');
     }
 
     /**
      * Run the loader to execute all of the hooks with WordPress.
      *
-     * @since    1.0.0
      */
     public function run()
     {
         $this->loader->run();
-    }
-
-    /**
-     * The name of the plugin used to uniquely identify it within the context of
-     * WordPress and to define internationalization functionality.
-     *
-     * @since     1.0.0
-     * @return    string    The name of the plugin.
-     */
-    public function plugin()
-    {
-        return $this->plugin;
     }
 
     /**
@@ -171,6 +127,11 @@ class Plugin
     public function getLoader()
     {
         return $this->loader;
+    }
+
+    public function getPluginName()
+    {
+        return $this->pluginName;
     }
 
     /**

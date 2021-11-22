@@ -1,0 +1,13 @@
+.otomaties-jobs-publish-form {
+  position: relative;
+
+  input[name='first_name'] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    visibility: hidden;
+  }
+}

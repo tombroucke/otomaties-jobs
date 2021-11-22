@@ -1,11 +1,9 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Otomaties Jobs module\n"
 "POT-Creation-Date: 2021-11-22 16:30+0100\n"
-"PO-Revision-Date: 2021-11-22 16:30+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2021-11-22 16:31+0100\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,60 +13,60 @@ msgstr ""
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: otomaties-jobs.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: nl_NL\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
 
 #: app/Admin.php:95 app/Admin.php:96
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: app/Admin.php:110
 msgid "Page for publishing jobs"
-msgstr ""
+msgstr "Pagina voor publicatie van vacatures"
 
 #: app/CustomPostTypes.php:17
 msgid "Job"
-msgstr ""
+msgstr "Job"
 
 #: app/CustomPostTypes.php:18
 msgid "Jobs"
-msgstr ""
+msgstr "Jobs"
 
 #: app/CustomPostTypes.php:46
 msgid "Job type"
-msgstr ""
+msgstr "Dienstverband"
 
 #: app/CustomPostTypes.php:47
 msgid "Job types"
-msgstr ""
+msgstr "Dienstverbanden"
 
 #: app/CustomPostTypes.php:73
 msgid "Add New"
-msgstr ""
+msgstr "Nieuw toevoegen"
 
 #. translators: %s: singular post name
 #. translators: %s: singular taxonomy name
 #: app/CustomPostTypes.php:75 app/CustomPostTypes.php:148
 #, php-format
 msgid "Add New %s"
-msgstr ""
+msgstr "Nieuwe %s toevoegen"
 
 #. translators: %s: singular post name
 #. translators: %s: singular taxonomy name
 #: app/CustomPostTypes.php:77 app/CustomPostTypes.php:142
 #, php-format
 msgid "Edit %s"
-msgstr ""
+msgstr "Bewerk %s"
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:79
 #, php-format
 msgid "New %s"
-msgstr ""
+msgstr "Nieuwe %s"
 
 #. translators: %s: singular post name
 #. translators: %s: plural post name
@@ -77,328 +75,328 @@ msgstr ""
 #: app/CustomPostTypes.php:144
 #, php-format
 msgid "View %s"
-msgstr ""
+msgstr "Bekijk %s"
 
 #. translators: %s: singular post name
 #. translators: %s: plural taxonomy name
 #: app/CustomPostTypes.php:85 app/CustomPostTypes.php:132
 #, php-format
 msgid "Search %s"
-msgstr ""
+msgstr "Zoekresultaten voor %s"
 
 #. translators: %s: plural post name to lower
 #: app/CustomPostTypes.php:87
 #, php-format
 msgid "No %s found."
-msgstr ""
+msgstr "Geen %s gevonden"
 
 #. translators: %s: plural post name to lower
 #: app/CustomPostTypes.php:89
 #, php-format
 msgid "No %s found in trash."
-msgstr ""
+msgstr "Geen %s gevonden in de prullenbak."
 
 #. translators: %s: singular post name
 #. translators: %s: singular taxonomy name
 #: app/CustomPostTypes.php:91 app/CustomPostTypes.php:140
 #, php-format
 msgid "Parent %s:"
-msgstr ""
+msgstr "Hoofd %s:"
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:95
 #, php-format
 msgid "%s Archives"
-msgstr ""
+msgstr "%s Archieven"
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:97
 #, php-format
 msgid "%s Attributes"
-msgstr ""
+msgstr "%s Eigenschappen"
 
 #. translators: %s: singular post name to lower
 #: app/CustomPostTypes.php:99
 #, php-format
 msgid "Insert into %s"
-msgstr ""
+msgstr "Toevoegen aan %s"
 
 #. translators: %s: singular post name to lower
 #: app/CustomPostTypes.php:101
 #, php-format
 msgid "Uploaded to this %s"
-msgstr ""
+msgstr "Geupload naar deze %s"
 
 #. translators: %s: plural post name to lower
 #: app/CustomPostTypes.php:103
 #, php-format
 msgid "Filter %s list"
-msgstr ""
+msgstr "Filter %s lijst"
 
 #. translators: %s: singular post name
 #. translators: %s: plural taxonomy name
 #: app/CustomPostTypes.php:105 app/CustomPostTypes.php:162
 #, php-format
 msgid "%s list navigation"
-msgstr ""
+msgstr "Navigatie door %slijst"
 
 #. translators: %s: singular post name
 #. translators: %s: plural taxonomy name
 #: app/CustomPostTypes.php:107 app/CustomPostTypes.php:164
 #, php-format
 msgid "%s list"
-msgstr ""
+msgstr "%s lijst"
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:109
 #, php-format
 msgid "%s published."
-msgstr ""
+msgstr "%s gepubliceerd."
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:111
 #, php-format
 msgid "%s published privately."
-msgstr ""
+msgstr "%s privé gepubliceerd."
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:113
 #, php-format
 msgid "%s reverted to draft."
-msgstr ""
+msgstr "%s teruggezet naar concept."
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:115
 #, php-format
 msgid "%s scheduled."
-msgstr ""
+msgstr "%s gepland."
 
 #. translators: %s: singular post name
 #: app/CustomPostTypes.php:117
 #, php-format
 msgid "%s updated."
-msgstr ""
+msgstr "%s bijgewerkt."
 
 #. translators: %s: plural taxonomy name
 #: app/CustomPostTypes.php:134
 #, php-format
 msgid "Popular %s"
-msgstr ""
+msgstr "Populair %s"
 
 #. translators: %s: plural taxonomy name
 #: app/CustomPostTypes.php:136
 #, php-format
 msgid "All %s"
-msgstr ""
+msgstr "Alle %s"
 
 #. translators: %s: singular taxonomy name
 #: app/CustomPostTypes.php:138
 #, php-format
 msgid "Parent %s"
-msgstr ""
+msgstr "Hoofd %s"
 
 #. translators: %s: singular taxonomy name
 #: app/CustomPostTypes.php:146
 #, php-format
 msgid "Update %s"
-msgstr ""
+msgstr "%s opslaan"
 
 #. translators: %s: singular taxonomy name
 #: app/CustomPostTypes.php:150
 #, php-format
 msgid "New %s Name"
-msgstr ""
+msgstr "Nieuw(e) %s naam"
 
 #. translators: %s: plural taxonomy name to lower
 #: app/CustomPostTypes.php:152
 #, php-format
 msgid "Separate %s with commas"
-msgstr ""
+msgstr "Splits %s met komma’s"
 
 #. translators: %s: plural taxonomy name to lower
 #: app/CustomPostTypes.php:154
 #, php-format
 msgid "Add or remove %s"
-msgstr ""
+msgstr "%s toevoegen of verwijderen"
 
 #. translators: %s: plural taxonomy name to lower
 #: app/CustomPostTypes.php:156
 #, php-format
 msgid "Choose from most used %s"
-msgstr ""
+msgstr "Kies uit de meest gebruikte %s"
 
 #. translators: %s: plural taxonomy name to lower
 #: app/CustomPostTypes.php:158
 #, php-format
 msgid "No %s found"
-msgstr ""
+msgstr "Geen %s gevonden."
 
 #. translators: %s: plural taxonomy name to lower
 #. translators: %s: singular taxonomy name to lower
 #: app/CustomPostTypes.php:160 app/CustomPostTypes.php:169
 #, php-format
 msgid "No %s"
-msgstr ""
+msgstr "Geen %s"
 
 #. translators: %s: plural taxonomy name
 #: app/CustomPostTypes.php:167
 #, php-format
 msgid "&larr; Back to %s"
-msgstr ""
+msgstr "&larr; Terug naar %s"
 
 #. translators: %s: singular taxonomy name to lower
 #: app/CustomPostTypes.php:171
 #, php-format
 msgid "Filter by %s"
-msgstr ""
+msgstr "Filteren op %s"
 
 #: app/CustomPostTypes.php:179 templates/publish-form.php:42
 msgid "Address"
-msgstr ""
+msgstr "Adres"
 
 #: app/CustomPostTypes.php:182 app/CustomPostTypes.php:236
 #: templates/publish-form.php:46 templates/publish-form.php:47
 #: templates/publish-form.php:132 templates/publish-form.php:133
 msgid "Street"
-msgstr ""
+msgstr "Straat"
 
 #: app/CustomPostTypes.php:185 app/CustomPostTypes.php:239
 #: templates/publish-form.php:52 templates/publish-form.php:53
 #: templates/publish-form.php:138 templates/publish-form.php:139
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #: app/CustomPostTypes.php:188 app/CustomPostTypes.php:242
 #: templates/publish-form.php:60 templates/publish-form.php:61
 #: templates/publish-form.php:146 templates/publish-form.php:147
 msgid "Postcode"
-msgstr ""
+msgstr "Postcode"
 
 #: app/CustomPostTypes.php:191 app/CustomPostTypes.php:245
 #: templates/publish-form.php:66 templates/publish-form.php:67
 #: templates/publish-form.php:152 templates/publish-form.php:153
 msgid "City"
-msgstr ""
+msgstr "Gemeente"
 
 #: app/CustomPostTypes.php:194
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: app/CustomPostTypes.php:197 app/Frontend.php:181
 #: templates/publish-form.php:75 templates/publish-form.php:76
 msgid "Publication date"
-msgstr ""
+msgstr "Publicatie datum"
 
 #: app/CustomPostTypes.php:204 app/Frontend.php:182
 #: templates/publish-form.php:81 templates/publish-form.php:82
 msgid "Application deadline"
-msgstr ""
+msgstr "Uiterlijke datum"
 
 #: app/CustomPostTypes.php:211 templates/publish-form.php:86
 msgid "Employer"
-msgstr ""
+msgstr "Werkgever"
 
 #: app/CustomPostTypes.php:214 templates/publish-form.php:90
 #: templates/publish-form.php:91
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #: app/CustomPostTypes.php:218 templates/publish-form.php:37
 #: templates/publish-form.php:38 templates/publish-form.php:96
 #: templates/publish-form.php:97
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
 #: app/CustomPostTypes.php:222 templates/publish-form.php:104
 #: templates/publish-form.php:105
 msgid "Contact name"
-msgstr ""
+msgstr "Contact naam"
 
 #: app/CustomPostTypes.php:226 templates/publish-form.php:110
 #: templates/publish-form.php:111
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #: app/CustomPostTypes.php:229 templates/publish-form.php:118
 #: templates/publish-form.php:119
 msgid "E-mailaddress"
-msgstr ""
+msgstr "E-mailadres"
 
 #: app/CustomPostTypes.php:232 templates/publish-form.php:124
 #: templates/publish-form.php:125
 msgid "Phone"
-msgstr ""
+msgstr "Telefoon"
 
 #: app/Frontend.php:123
 msgid "Job has been submitted for moderation."
-msgstr ""
+msgstr "Job werd ingediend ter moderatie."
 
 #: app/Frontend.php:133
 msgid "Suspected bot activity"
-msgstr ""
+msgstr "Verdenking van bot activiteit"
 
 #: app/Frontend.php:179
 msgid "Job title"
-msgstr ""
+msgstr "Vacature titel"
 
 #: app/Frontend.php:180
 msgid "Job description"
-msgstr ""
+msgstr "Job beschrijving"
 
 #: app/Frontend.php:183
 msgid "Company name"
-msgstr ""
+msgstr "Bedrijfsnaam"
 
 #: app/Frontend.php:184
 msgid "Company description"
-msgstr ""
+msgstr "Bedrijfsomschrijving"
 
 #: app/Frontend.php:185
 msgid "Company contact name"
-msgstr ""
+msgstr "Naam contactpersoon bedrijf"
 
 #: app/Frontend.php:186
 msgid "Company phone"
-msgstr ""
+msgstr "Bedrijf telefoonnummer"
 
 #: app/Frontend.php:193
 #, php-format
 msgid "%s is a required field"
-msgstr ""
+msgstr "%s is een verplicht veld"
 
 #: templates/publish-form.php:16
 msgid "Job information"
-msgstr ""
+msgstr "Job informatie"
 
 #: templates/publish-form.php:20 templates/publish-form.php:31
 #: templates/publish-form.php:32
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: templates/publish-form.php:22
 msgid "Select"
-msgstr ""
+msgstr "Selecteer"
 
 #: templates/publish-form.php:71
 msgid "Dates"
-msgstr ""
+msgstr "Datums"
 
 #: templates/publish-form.php:160
 msgid "Submit"
-msgstr ""
+msgstr "Verzenden"
 
 #. Plugin Name of the plugin/theme
 msgid "Otomaties Jobs module"
-msgstr ""
+msgstr "Otomaties Jobs module"
 
 #. Description of the plugin/theme
 msgid "Allow people to post jobs. Moderate jobs before publishing"
-msgstr ""
+msgstr "Sta mensen toe vacatures te plaatsen. Banen modereren vooraleer te publiceren"
 
 #. Author of the plugin/theme
 msgid "Tom Broucke"
-msgstr ""
+msgstr "Tom Broucke"
 
 #. Author URI of the plugin/theme
 msgid "https://tombroucke.be/"
-msgstr ""
+msgstr "https://tombroucke.be/"

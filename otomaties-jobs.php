@@ -1,8 +1,10 @@
 <?php
 
+namespace Otomaties\Jobs;
+
 /**
- * Plugin Name:       Jobs module
- * Description:       Display job offers and allow visitors to apply
+ * Plugin Name:       Otomaties Jobs module
+ * Description:       Allow people to post jobs. Moderate jobs before publishing
  * Version:           1.0.0
  * Author:            Tom Broucke
  * Author URI:        https://tombroucke.be/
@@ -12,44 +14,19 @@
  * Domain Path:       /languages
  */
 
-namespace Otomaties\Jobs;
-
-if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once('vendor/autoload.php');
-}
-
 // If this file is called directly, abort.
 if (! defined('WPINC')) {
     die;
 }
 
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-define('OTOMATIES_JOBS_VERSION', '1.0.0');
-
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/activator.php
- */
-function activate()
-{
-    Activator::activate();
+// Autoload files
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once('vendor/autoload.php');
 }
 
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/deactivator.php
- */
-function deactivate()
-{
-    Deactivator::deactivate();
-}
-
-register_activation_hook(__FILE__, 'Otomaties\\Jobs\\activate');
-register_deactivation_hook(__FILE__, 'Otomaties\\Jobs\\deactivate');
+// Setup / teardown
+register_activation_hook(__FILE__, '\\Otomaties\\Jobs\\Activator::activate');
+register_deactivation_hook(__FILE__, '\\Otomaties\\Jobs\\Deactivator::deactivate');
 
 /**
  * Begins execution of the plugin.
@@ -57,38 +34,16 @@ register_deactivation_hook(__FILE__, 'Otomaties\\Jobs\\deactivate');
  * Since everything within the plugin is registered via hooks,
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
- *
- * @since    1.0.0
  */
-function run()
+function init()
 {
-    $prerequisites = true;
+    if (! function_exists('get_plugin_data')) {
+        require_once(ABSPATH . 'wp-admin/includes/plugin.php');
+    }
+    $pluginData = \get_plugin_data(__FILE__);
+    $pluginData['pluginName'] = basename(__FILE__, '.php');
 
-    if (!class_exists('Otomaties\\Jobs\\Plugin')) {
-        add_action('admin_notices', function(){
-            ?>
-            <div class="notice notice-error is-dismissible">
-                <p><?php _e('The jobs module is active but ineffective due to the missing composer dependencies. Did you run <code>composer install</code>?', 'otomaties-jobs') ?></p>
-            </div>
-            <?php
-        });
-        $prerequisites = false;
-    }
-    if (!class_exists('ACF')) {
-        add_action('admin_notices', function(){
-            ?>
-            <div class="notice notice-error is-dismissible">
-                <p><?php _e('The jobs module is active but ineffective due to the missing plugin \'Advanced Custom Fields Pro\'', 'otomaties-jobs') ?></p>
-            </div>
-            <?php
-        });
-        $prerequisites = false;
-    }
-
-    if ($prerequisites) {
-        $plugin = new Plugin();
-        $plugin->run();
-    }
-        
+    $plugin = new Plugin($pluginData);
+    $plugin->run();
 }
-run();
+init();
