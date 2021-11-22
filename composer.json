@@ -12,5 +12,10 @@
             "email": "tom@tombroucke.be"
         }
     ],
-    "require": {}
+    "type": "wordpress-plugin",
+    "require": {
+        "johnbillion/extended-cpts": "^4.5",
+        "stoutlogic/acf-builder": "^1.11",
+        "composer/installers": "^1.0"
+    }
 }
