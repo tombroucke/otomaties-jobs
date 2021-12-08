@@ -42,9 +42,9 @@ class CustomPostTypes
             )
         );
 
-        $slug           = 'job_type';
-        $singular_name  = __('Job type', 'otomaties-jobs');
-        $plural_name    = __('Job types', 'otomaties-jobs');
+        $slug           = 'job_employment_type';
+        $singular_name  = __('Job employment type', 'otomaties-jobs');
+        $plural_name    = __('Job employment types', 'otomaties-jobs');
 
         register_extended_taxonomy(
             $slug,

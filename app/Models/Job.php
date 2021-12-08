@@ -29,9 +29,9 @@ class Job
         return $this->id;
     }
 
-    public function types()
+    public function employmentTypes()
     {
-        $terms = wp_get_post_terms($this->getId(), 'job_type');
+        $terms = wp_get_post_terms($this->getId(), 'job_employment_type');
         return array_map(function ($term) {
             return $term->name;
         }, $terms);

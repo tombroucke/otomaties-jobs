@@ -17,8 +17,8 @@
     <div class="row">
         <div class="col-12">
             <div class="mb-3">
-                <label for="job_type" class="form-label"><?php _e('Title', 'otomaties-jobs'); ?></label>
-                <select name="job_type" id="job_type" class="form-control">
+                <label for="job_employment_type" class="form-label"><?php _e('Employment type', 'otomaties-jobs'); ?></label>
+                <select name="job_employment_type" id="job_employment_type" class="form-control">
                     <option value="">- <?php _e('Select', 'otomaties-jobs'); ?> -</option>
                     <?php foreach ($jobTypes as $jobType) : ?>
                         <option value="<?php echo $jobType->slug; ?>"><?php echo $jobType->name; ?></option>
@@ -154,7 +154,7 @@
             </div>
         </div>
     </div>
-    <input type="text" name="first_name" autocomplete="first_name_value_1">
+    <input class="visually-hidden" type="text" name="first_name" autocomplete="first_name_value_1">
     <input type="hidden" name="action" value="otomaties_jobs_jobs_publish_job">
     <?php wp_nonce_field('publish_job_nonce', 'publish_job'); ?>
     <button type="submit" class="btn btn-primary"><?php _e('Submit', 'otomaties-jobs'); ?></button>

@@ -96,11 +96,11 @@ class Frontend
 
             ob_start();
             $jobTypes = get_terms([
-                'taxonomy' => 'job_type',
+                'taxonomy' => 'job_employment_type',
                 'hide_empty' => false,
             ]);
 
-            $jobType = filter_input(INPUT_POST, 'job_type', FILTER_SANITIZE_NUMBER_INT);
+            $jobType = filter_input(INPUT_POST, 'job_employment_type', FILTER_SANITIZE_NUMBER_INT);
             $jobTitle = filter_input(INPUT_POST, 'job_title', FILTER_SANITIZE_STRING);
             $jobDescription = filter_input(INPUT_POST, 'job_description', FILTER_SANITIZE_STRING);
             $addressStreet = filter_input(INPUT_POST, 'address_street', FILTER_SANITIZE_STRING);
@@ -152,7 +152,7 @@ class Frontend
                 }
             }
             
-            $jobType = filter_input(INPUT_POST, 'job_type', FILTER_SANITIZE_STRING);
+            $jobType = filter_input(INPUT_POST, 'job_employment_type', FILTER_SANITIZE_STRING);
             $jobTitle = filter_input(INPUT_POST, 'job_title', FILTER_SANITIZE_STRING);
             $jobDescription = filter_input(INPUT_POST, 'job_description', FILTER_SANITIZE_STRING);
             $addressStreet = filter_input(INPUT_POST, 'address_street', FILTER_SANITIZE_STRING);
@@ -230,13 +230,11 @@ class Frontend
             ];
             $newJob = Job::insert($args);
 
-            wp_set_object_terms($newJob->getId(), $jobType, 'job_type');
+            wp_set_object_terms($newJob->getId(), $jobType, 'job_employment_type');
 
-            if ($newJob) {
-                $redirect = add_query_arg('job_status', 'pending', $referer);
-            } else {
-                $redirect = add_query_arg('job_status', 'failed', $referer);
-            }
+            $redirect = $newJob ? add_query_arg('job_status', 'pending', $referer) : add_query_arg('job_status', 'failed', $referer);
+
+            do_action('otomaties_jobs_publish', $newJob);
             wp_safe_redirect($redirect);
             die();
         }
