@@ -1,21 +1,23 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Otomaties Jobs module\n"
-"POT-Creation-Date: 2021-11-22 16:30+0100\n"
-"PO-Revision-Date: 2021-11-22 16:31+0100\n"
+"POT-Creation-Date: 2021-12-08 21:42+0100\n"
+"PO-Revision-Date: 2021-12-08 21:42+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: otomaties-jobs.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: nl_NL\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: node_modules\n"
@@ -37,11 +39,11 @@ msgid "Jobs"
 msgstr "Jobs"
 
 #: app/CustomPostTypes.php:46
-msgid "Job type"
+msgid "Job employment type"
 msgstr "Dienstverband"
 
 #: app/CustomPostTypes.php:47
-msgid "Job types"
+msgid "Job employment types"
 msgstr "Dienstverbanden"
 
 #: app/CustomPostTypes.php:73
@@ -368,14 +370,17 @@ msgstr "%s is een verplicht veld"
 msgid "Job information"
 msgstr "Job informatie"
 
-#: templates/publish-form.php:20 templates/publish-form.php:31
-#: templates/publish-form.php:32
-msgid "Title"
-msgstr "Titel"
+#: templates/publish-form.php:20
+msgid "Employment type"
+msgstr "Dienstverband"
 
 #: templates/publish-form.php:22
 msgid "Select"
 msgstr "Selecteer"
+
+#: templates/publish-form.php:31 templates/publish-form.php:32
+msgid "Title"
+msgstr "Titel"
 
 #: templates/publish-form.php:71
 msgid "Dates"
@@ -391,7 +396,8 @@ msgstr "Otomaties Jobs module"
 
 #. Description of the plugin/theme
 msgid "Allow people to post jobs. Moderate jobs before publishing"
-msgstr "Sta mensen toe vacatures te plaatsen. Banen modereren vooraleer te publiceren"
+msgstr ""
+"Sta mensen toe vacatures te plaatsen. Banen modereren vooraleer te publiceren"
 
 #. Author of the plugin/theme
 msgid "Tom Broucke"
@@ -400,3 +406,6 @@ msgstr "Tom Broucke"
 #. Author URI of the plugin/theme
 msgid "https://tombroucke.be/"
 msgstr "https://tombroucke.be/"
+
+#~ msgid "Job type"
+#~ msgstr "Dienstverband"
