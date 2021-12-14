@@ -88,7 +88,7 @@ class Frontend
 
     public function publishJobForm(string $content)
     {
-        if (is_single() && publishJobPage() && get_the_ID() == publishJobPage()) {
+        if (is_singular() && publishJobPage() && get_the_ID() == publishJobPage()) {
             if (!empty($requiredFieldErrors)) {
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
