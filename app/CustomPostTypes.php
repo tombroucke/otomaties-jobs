@@ -42,9 +42,9 @@ class CustomPostTypes
             )
         );
 
-        $slug           = 'job_type';
-        $singular_name  = __('Job type', 'otomaties-jobs');
-        $plural_name    = __('Job types', 'otomaties-jobs');
+        $slug           = 'job_employment_type';
+        $singular_name  = __('Job employment type', 'otomaties-jobs');
+        $plural_name    = __('Job employment types', 'otomaties-jobs');
 
         register_extended_taxonomy(
             $slug,
@@ -243,6 +243,12 @@ class CustomPostTypes
             ])
             ->addText('company_address_city', [
                 'label' => __('City', 'otomaties-jobs')
+            ])
+            ->addTab('application', [
+                'label' => __('Application', 'otomaties-jobs')
+            ])
+            ->addText('application_form_shortcode', [
+                'label' => __('Application form shortcode', 'otomaties-jobs')
             ])
             ->setLocation('post_type', '==', 'job');
         acf_add_local_field_group($job->build());

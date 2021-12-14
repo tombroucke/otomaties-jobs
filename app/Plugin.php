@@ -107,6 +107,7 @@ class Plugin
 
         $this->loader->add_filter('the_content', $frontend, 'publishJobForm');
         $this->loader->add_action('template_redirect', $frontend, 'publishJob');
+        $this->loader->add_filter('the_content', $frontend, 'jobContent');
     }
 
     /**

@@ -104,13 +104,23 @@ class Admin
 
     public function addOptionsPageFields()
     {
-        $optionsPage = new FieldsBuilder('otomaties-jobs-options-page');
+        $optionsPage = new FieldsBuilder('Settings');
         $optionsPage
+            ->addTab('general', [
+                'label' => __('General', 'otomaties-jobs'),
+            ])
             ->addPostObject('publish_jobs_page', [
                 'label' => __('Page for publishing jobs', 'otomaties-jobs'),
+                'instructions' => __('Leave blank to disable job publishing for non-logged-in users.', 'otomaties-jobs'),
                 'post_type' => 'page',
                 'allow_null' => true,
                 'return_format' => 'id',
+            ])
+            ->addTab('application', [
+                'label' => __('Application', 'otomaties-jobs'),
+            ])
+            ->addText('application_form_shortcode', [
+                'label' => __('Application form shortcode', 'otomaties-jobs'),
             ])
             ->setLocation('options_page', '==', 'otomaties-jobs-settings');
         acf_add_local_field_group($optionsPage->build());

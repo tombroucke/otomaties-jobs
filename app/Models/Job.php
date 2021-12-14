@@ -29,9 +29,9 @@ class Job
         return $this->id;
     }
 
-    public function types()
+    public function employmentTypes()
     {
-        $terms = wp_get_post_terms($this->getId(), 'job_type');
+        $terms = wp_get_post_terms($this->getId(), 'job_employment_type');
         return array_map(function ($term) {
             return $term->name;
         }, $terms);
@@ -40,6 +40,10 @@ class Job
     public function get(string $key, bool $single = true)
     {
         return get_post_meta($this->getId(), $key, $single);
+    }
+
+    public function content() {
+        return get_post_field('post_content', $this->getId());
     }
 
     public function addressStreet()
@@ -62,6 +66,33 @@ class Job
         return $this->get('address_city');
     }
 
+    public function location() 
+    {
+        $address = '';
+        if ($this->addressStreet()) {
+            $address .= $this->addressStreet();
+
+            if ($this->addressStreetNumber()) {
+                $address .= ' ' . $this->addressStreetNumber();
+            }
+        }
+        if ('' != $address && ($this->addressPostcode() || $this->addressCity())) {
+            $address .= '<br />';
+        }
+        if ($this->addressPostcode()) {
+            $address .= $this->addressPostcode();
+
+            if ($this->addressCity()) {
+                $address .= ' ';
+            }
+        }
+
+        if ($this->addressCity()) {
+            $address .= $this->addressCity();
+        }
+        return '' != $address ? $address : null;
+    }
+
     public function publicationDate() : ?DateTime
     {
         $publicationDate = $this->get('publication_date');
@@ -80,6 +111,15 @@ class Job
             return $dateTime;
         }
         return null;
+    }
+
+    public function applicationFormShortcode() {
+        $applicationFormShortcode = false;
+        $applicationFormShortcode = get_field('application_form_shortcode', $this->getId());
+        if (!$applicationFormShortcode) {
+            $applicationFormShortcode = get_field('application_form_shortcode', 'option');
+        }
+        return $applicationFormShortcode;
     }
 
     public function companyName()
