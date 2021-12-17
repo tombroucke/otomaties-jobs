@@ -2,6 +2,7 @@
 
 namespace Otomaties\Jobs;
 
+use DateTime;
 use Otomaties\Jobs\Models\Job;
 
 /**
@@ -62,6 +63,9 @@ class Frontend
          * class.
          */
         wp_enqueue_style($this->pluginName, Assets::find('css/main.css'), array(), null);
+        if (publishJobPage()) {
+            wp_enqueue_style($this->pluginName . '-publish_form', Assets::find('js/publish_form.css'), array(), null);
+        }
     }
 
     /**
@@ -84,6 +88,9 @@ class Frontend
          */
 
         wp_enqueue_script($this->pluginName, Assets::find('js/main.js'), array( 'jquery' ), null);
+        if (publishJobPage()) {
+            wp_enqueue_script($this->pluginName . '-publish_form', Assets::find('js/publish_form.js'), array( 'jquery' ), null);
+        }
     }
 
     public function publishJobForm(string $content)
@@ -231,6 +238,9 @@ class Frontend
                 return;
             }
 
+            $publicationDateDateTime = DateTime::createFromFormat('d-m-Y', $publicationDate);
+            $applicationDeadlineDateTime = DateTime::createFromFormat('d-m-Y', $applicationDeadline);
+
             $args = [
                 'post_type' => 'job',
                 'post_status' => 'pending',
@@ -241,8 +251,8 @@ class Frontend
                     'address_street_number' => $addressStreetNumber,
                     'address_postcode' => $addressPostcode,
                     'address_city' => $addressCity,
-                    'publication_date' => $publicationDate,
-                    'application_deadline' => $applicationDeadline,
+                    'publication_date' => $publicationDateDateTime->format('Ymd'),
+                    'application_deadline' => $applicationDeadlineDateTime->format('Ymd'),
                     'company_name' => $companyName,
                     'company_description' => $companyDescription,
                     'company_contact_name' => $companyContactName,
@@ -257,11 +267,24 @@ class Frontend
             ];
             $newJob = Job::insert($args);
 
-            wp_set_object_terms($newJob->getId(), $jobType, 'job_employment_type');
+            if ($newJob instanceof Job) {
+                wp_set_object_terms($newJob->getId(), $jobType, 'job_employment_type');
+                $redirect = add_query_arg('job_status', 'pending', $referer);
+                do_action('otomaties_jobs_publish', $newJob);
 
-            $redirect = $newJob ? add_query_arg('job_status', 'pending', $referer) : add_query_arg('job_status', 'failed', $referer);
+                if ($notificationTo = get_field('new_job_notification_email', 'option')) {
+                    $mailer = new Mailer();
+                    $subject = __('New job, please moderate', 'otomaties-jobs');
+                    $message = $mailer->paragraph(__('Hi,', 'levl'));
+                    $message .= $mailer->paragraph(__('There is a new job up for moderation.', 'levl'));
+                    $message .= $mailer->paragraph(sprintf(__('Visit <a href="%s">%1$s</a> to approve.', 'levl'), get_edit_post_link($newJob->getId())));
+                    $message .= $mailer->paragraph(__('Kind regards,', 'levl') . '<br />' . get_bloginfo('site_name'));
+                    $mailer->sendMail($notificationTo, $subject, $message);
+                }
 
-            do_action('otomaties_jobs_publish', $newJob);
+            } else {
+                $redirect = add_query_arg('job_status', 'failed', $referer);
+            }
             wp_safe_redirect($redirect);
             die();
         }

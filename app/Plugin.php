@@ -88,8 +88,8 @@ class Plugin
     {
 
         $admin = new Admin($this->getPluginName(), $this->getVersion());
-        $this->loader->add_action('admin_enqueue_scripts', $admin, 'enqueueStyles');
-        $this->loader->add_action('admin_enqueue_scripts', $admin, 'enqueueScripts');
+        // $this->loader->add_action('admin_enqueue_scripts', $admin, 'enqueueStyles');
+        // $this->loader->add_action('admin_enqueue_scripts', $admin, 'enqueueScripts');
         $this->loader->add_action('acf/init', $admin, 'optionsPage');
         $this->loader->add_action('acf/init', $admin, 'addOptionsPageFields');
     }

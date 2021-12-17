@@ -11,6 +11,7 @@ module.exports = (env, argv) => ({
 	entry: {
 		main: './assets/js/main.js',
 		admin: './assets/js/admin.js',
+		publish_form: './assets/js/publish_form.js',
 	},
 	output: {
 		path: __dirname + '/public',
@@ -89,7 +90,7 @@ module.exports = (env, argv) => ({
 	}),
 	new BrowserSyncPlugin({
 		port: 3000,
-		proxy: 'https://otomaties-jobs.local',
+		proxy: 'https://levl.local',
 	}),
 	new StyleLintPlugin({
 		failOnError: argv.mode === 'production' ? true : false,

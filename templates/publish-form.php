@@ -76,13 +76,13 @@
         <div class="col-sm-6">
             <div class="mb-3">
                 <label for="publication_date" class="form-label"><?php _e('Publication date', 'otomaties-jobs'); ?><span class="text-danger"> *</span></label>
-                <input type="text" class="form-control datepicker" name="publication_date" id="publication_date" placeholder="<?php _e('Publication date', 'otomaties-jobs'); ?>" value="<?php echo $publicationDate; ?>" required>
+                <input type="text" class="form-control datepicker" name="publication_date" id="publication_date" readonly="readonly" placeholder="<?php _e('Publication date', 'otomaties-jobs'); ?>" value="<?php echo $publicationDate; ?>" required>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="mb-3">
                 <label for="application_deadline" class="form-label"><?php _e('Application deadline', 'otomaties-jobs'); ?><span class="text-danger"> *</span></label>
-                <input type="text" class="form-control datepicker" name="application_deadline" id="application_deadline" placeholder="<?php _e('Application deadline', 'otomaties-jobs'); ?>" value="<?php echo $applicationDeadline; ?>" required>
+                <input type="text" class="form-control datepicker" name="application_deadline" id="application_deadline" readonly="readonly" placeholder="<?php _e('Application deadline', 'otomaties-jobs'); ?>" value="<?php echo $applicationDeadline; ?>" required>
             </div>
         </div>
     </div>

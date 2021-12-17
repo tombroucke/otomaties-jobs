@@ -109,13 +109,25 @@ class Admin
             ->addTab('general', [
                 'label' => __('General', 'otomaties-jobs'),
             ])
-            ->addPostObject('publish_jobs_page', [
-                'label' => __('Page for publishing jobs', 'otomaties-jobs'),
-                'instructions' => __('Leave blank to disable job publishing for non-logged-in users.', 'otomaties-jobs'),
-                'post_type' => 'page',
-                'allow_null' => true,
-                'return_format' => 'id',
-            ])
+                ->addPostObject('publish_jobs_page', [
+                    'label' => __('Page for publishing jobs', 'otomaties-jobs'),
+                    'instructions' => __('Leave blank to disable job publishing for non-logged-in users.', 'otomaties-jobs'),
+                    'post_type' => 'page',
+                    'allow_null' => true,
+                    'return_format' => 'id',
+                ])
+                ->addEmail('new_job_notification_email', [
+                    'label' => __('E-mailaddress for new job notification', 'otomaties-jobs'),
+                    'instructions' => __('Leave blank for no notification', 'otomaties-jobs'),
+                    'conditional_logic' => [
+                        [
+                            [
+                                'field' => 'publish_jobs_page',
+                                'operator'  =>  '!=empty',
+                            ],
+                        ]
+                    ],
+                ])
             ->addTab('application', [
                 'label' => __('Application', 'otomaties-jobs'),
             ])
