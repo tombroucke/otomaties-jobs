@@ -1,0 +1,14 @@
+{
+  "main": {
+    "css": "css/main.min.css",
+    "js": "js/main.31d6cfe0d16ae931b73c.js"
+  },
+  "admin": {
+    "css": "css/admin.min.css",
+    "js": "js/admin.31d6cfe0d16ae931b73c.js"
+  },
+  "publish_form": {
+    "css": "css/publish_form.min.css",
+    "js": "js/publish_form.b8b96cc575c1f539b0b5.js"
+  }
+}
