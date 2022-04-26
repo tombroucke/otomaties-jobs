@@ -21,7 +21,7 @@
         <div class="col-12">
             <div class="mb-3">
                 <label for="job_employment_type" class="form-label"><?php _e('Employment type', 'otomaties-jobs'); ?></label>
-                <select name="job_employment_type" id="job_employment_type" class="form-control">
+                <select name="job_employment_type" id="job_employment_type" class="form-select">
                     <option value="">- <?php _e('Select', 'otomaties-jobs'); ?> -</option>
                     <?php foreach ($jobTypes as $jobType) : ?>
                         <option value="<?php echo $jobType->slug; ?>"><?php echo $jobType->name; ?></option>

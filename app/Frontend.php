@@ -281,7 +281,6 @@ class Frontend
                     $message .= $mailer->paragraph(__('Kind regards,', 'levl') . '<br />' . get_bloginfo('site_name'));
                     $mailer->sendMail($notificationTo, $subject, $message);
                 }
-
             } else {
                 $redirect = add_query_arg('job_status', 'failed', $referer);
             }
