@@ -281,7 +281,6 @@ class Frontend
                     $message .= $mailer->paragraph(__('Kind regards,', 'levl') . '<br />' . get_bloginfo('site_name'));
                     $mailer->sendMail($notificationTo, $subject, $message);
                 }
-
             } else {
                 $redirect = add_query_arg('job_status', 'failed', $referer);
             }
@@ -300,10 +299,33 @@ class Frontend
                 'applicationDeadline' => $job->applicationDeadline(),
                 'description' => $content,
                 'location' => $job->location(),
+                'company' => $job->company(),
                 'applicationFormShortcode' => $job->applicationFormShortcode(),
             ]);
             return $template->get();
         }
         return $content;
+    }
+
+    public function hideExpiredJobs($query)
+    {
+        if (is_admin()) {
+            return;
+        }
+        if ($query->get('post_type') == 'job' && !$query->get('custom_query')) {
+            $meta_query[] = array(
+                'relation' => 'OR',
+                array(
+                    'key' => 'application_deadline',
+                    'value' => date('Ymd'),
+                    'compare' => '>='
+                ),
+                array(
+                    'key' => 'application_deadline',
+                    'compare'=>'NOT EXISTS',
+                )
+            );
+            $query->set('meta_query', $meta_query);
+        }
     }
 }

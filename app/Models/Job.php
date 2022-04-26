@@ -15,7 +15,7 @@ class Job
 {
     private $id;
 
-    public function __construct(\WP_Post|int $post)
+    public function __construct($post)
     {
         if (is_int($post)) {
             $this->id = $post;
@@ -42,7 +42,8 @@ class Job
         return get_post_meta($this->getId(), $key, $single);
     }
 
-    public function content() {
+    public function content()
+    {
         return get_post_field('post_content', $this->getId());
     }
 
@@ -66,7 +67,7 @@ class Job
         return $this->get('address_city');
     }
 
-    public function location() 
+    public function location()
     {
         $address = '';
         if ($this->addressStreet()) {
@@ -113,7 +114,8 @@ class Job
         return null;
     }
 
-    public function applicationFormShortcode() {
+    public function applicationFormShortcode()
+    {
         $applicationFormShortcode = false;
         $applicationFormShortcode = get_field('application_form_shortcode', $this->getId());
         if (!$applicationFormShortcode) {
@@ -122,55 +124,23 @@ class Job
         return $applicationFormShortcode;
     }
 
-    public function companyName()
+    public function company()
     {
-        return $this->get('company_name');
+        $company = [
+            'name' => $this->get('company_name'),
+            'description' => $this->get('company_description'),
+            'contactName' => $this->get('company_contact_name'),
+            'website' => $this->get('company_website'),
+            'email' => $this->get('company_email'),
+            'phone' => $this->get('company_phone'),
+            'addressStreet' => $this->get('company_address_street'),
+            'addressNumber' => $this->get('company_address_street_number'),
+            'addressPostcode' => $this->get('company_address_postcode'),
+            'addressCity' => $this->get('company_address_city'),
+        ];
+        return (object)$company;
     }
 
-    public function companyDescription()
-    {
-        return $this->get('company_description');
-    }
-
-    public function companyContactName()
-    {
-        return $this->get('company_contact_name');
-    }
-
-    public function companyWebsite()
-    {
-        return $this->get('company_website');
-    }
-
-    public function companyEmail()
-    {
-        return $this->get('company_email');
-    }
-
-    public function companyPhone()
-    {
-        return $this->get('company_phone');
-    }
-
-    public function companyAddressStreet()
-    {
-        return $this->get('company_address_street');
-    }
-
-    public function companyAddressNumber()
-    {
-        return $this->get('company_address_street_number');
-    }
-
-    public function companyAddressPostcode()
-    {
-        return $this->get('company_address_postcode');
-    }
-
-    public function companyAddressCity()
-    {
-        return $this->get('company_address_city');
-    }
 
     public static function insert($args)
     {
