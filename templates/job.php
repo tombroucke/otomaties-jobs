@@ -21,7 +21,7 @@
 
 <?php if ($description && '' != $description) : ?>
     <h3><?php _e('Description', 'otomaties-jobs'); ?></h3>
-    <?php echo wp_kses($description, ['a' => [], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?>
+    <?php echo wp_kses($description, ['a' => ['href' => [], 'title' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?>
 <?php endif; ?>
 
 <?php if ($location) : ?>
