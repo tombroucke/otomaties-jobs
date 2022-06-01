@@ -131,14 +131,14 @@ class Frontend
 
             $errors = [];
 
-            if (isset($_SESSION['otomaties_jobs_jobs_required_field_errors']) && !empty($_SESSION['otomaties_jobs_jobs_required_field_errors'])) {
-                $errors = array_merge($errors, $_SESSION['otomaties_jobs_jobs_required_field_errors']);
-                unset($_SESSION['otomaties_jobs_jobs_required_field_errors']);
+            if (isset($_SESSION['otomaties_jobs_required_field_errors']) && !empty($_SESSION['otomaties_jobs_required_field_errors'])) {
+                $errors = array_merge($errors, $_SESSION['otomaties_jobs_required_field_errors']);
+                unset($_SESSION['otomaties_jobs_required_field_errors']);
             }
 
-            if (isset($_SESSION['otomaties_jobs_jobs_suspected_bot'])) {
+            if (isset($_SESSION['otomaties_jobs_suspected_bot'])) {
                 $errors = array_merge($errors, [__('Suspected bot activity', 'otomaties-jobs')]);
-                unset($_SESSION['otomaties_jobs_jobs_suspected_bot']);
+                unset($_SESSION['otomaties_jobs_suspected_bot']);
             }
 
             $template = new Template('publish-form', [
@@ -169,7 +169,7 @@ class Frontend
                 'errors' => $errors,
 
             ]);
-            return apply_filters('otomaties_jobs_jobs_publish_form', $template->get());
+            return apply_filters('otomaties_jobs_publish_form', $template->get());
         }
         return $content;
     }
@@ -179,7 +179,7 @@ class Frontend
 
         $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 
-        if (publishJobPage() && $action && $action == 'otomaties_jobs_jobs_publish_job') {
+        if (publishJobPage() && $action && $action == 'otomaties_jobs_publish_job') {
             if (!empty($requiredFieldErrors)) {
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
@@ -229,12 +229,12 @@ class Frontend
             }
 
             if (!empty($requiredFieldErrors)) {
-                $_SESSION['otomaties_jobs_jobs_required_field_errors'] = $requiredFieldErrors;
+                $_SESSION['otomaties_jobs_required_field_errors'] = $requiredFieldErrors;
                 return;
             }
 
             if ($honeyPot) {
-                $_SESSION['otomaties_jobs_jobs_suspected_bot'] = true;
+                $_SESSION['otomaties_jobs_suspected_bot'] = true;
                 return;
             }
 

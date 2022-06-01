@@ -2,31 +2,31 @@
     <?php if ($employmentTypes) : ?>
         <tr>
             <th><?php _e('Employment type', 'otomaties-jobs'); ?></th>
-            <td><?php echo implode(', ', $employmentTypes); ?></td>
+            <td><?php esc_html_e(implode(', ', $employmentTypes)); ?></td>
         </tr>
     <?php endif; ?>
     <?php if ($publicationDate) : ?>
         <tr>
             <th><?php _e('Publication date', 'otomaties-jobs'); ?></th>
-            <td><?php echo $publicationDate->format(get_option('date_format')); ?></td>
+            <td><?php esc_html_e($publicationDate->format(get_option('date_format'))); ?></td>
         </tr>
     <?php endif; ?>
     <?php if ($applicationDeadline) : ?>
         <tr>
             <th><?php _e('Application deadline', 'otomaties-jobs'); ?></th>
-            <td><?php echo $applicationDeadline->format(get_option('date_format')); ?></td>
+            <td><?php esc_html_e($applicationDeadline->format(get_option('date_format'))); ?></td>
         </tr>
     <?php endif; ?>
 </table>
 
 <?php if ($description && '' != $description) : ?>
     <h3><?php _e('Description', 'otomaties-jobs'); ?></h3>
-    <?php echo $description; ?>
+    <?php echo wp_kses($description, ['p' => [], 'br' => [], 'strong' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => []]); ?>
 <?php endif; ?>
 
 <?php if ($location) : ?>
     <h3><?php _e('Location', 'otomaties-jobs'); ?></h3>
-    <p><?php echo $location; ?></p>
+    <p><?php echo wp_kses($location, ['br' => []]); ?></p>
 <?php endif; ?>
 
 <?php if ($applicationFormShortcode) : ?>
