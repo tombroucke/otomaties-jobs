@@ -293,7 +293,7 @@ class Frontend
     {
         if (is_singular('job')) {
             $job = new Job(get_the_ID());
-            $template = new Template('job', [
+            $variables = apply_filters('otomaties_jobs_job_content', [
                 'employmentTypes' => $job->employmentTypes(),
                 'publicationDate' => $job->publicationDate(),
                 'applicationDeadline' => $job->applicationDeadline(),
@@ -301,6 +301,7 @@ class Frontend
                 'location' => $job->location(),
                 'applicationFormShortcode' => $job->applicationFormShortcode(),
             ]);
+            $template = new Template('job', $variables);
             return $template->get();
         }
         return $content;

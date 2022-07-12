@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Otomaties Jobs module\n"
 "POT-Creation-Date: 2021-12-08 21:42+0100\n"
-"PO-Revision-Date: 2021-12-08 21:42+0100\n"
+"PO-Revision-Date: 2022-07-12 14:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: otomaties-jobs.php\n"
@@ -90,7 +90,7 @@ msgstr "Zoekresultaten voor %s"
 #: app/CustomPostTypes.php:87
 #, php-format
 msgid "No %s found."
-msgstr "Geen %s gevonden"
+msgstr "Geen %s gevonden."
 
 #. translators: %s: plural post name to lower
 #: app/CustomPostTypes.php:89
@@ -231,7 +231,7 @@ msgstr "Kies uit de meest gebruikte %s"
 #: app/CustomPostTypes.php:158
 #, php-format
 msgid "No %s found"
-msgstr "Geen %s gevonden."
+msgstr "Geen %s gevonden"
 
 #. translators: %s: plural taxonomy name to lower
 #. translators: %s: singular taxonomy name to lower
@@ -287,7 +287,7 @@ msgstr "Datum"
 #: app/CustomPostTypes.php:197 app/Frontend.php:181
 #: templates/publish-form.php:75 templates/publish-form.php:76
 msgid "Publication date"
-msgstr "Publicatie datum"
+msgstr "Publicatiedatum"
 
 #: app/CustomPostTypes.php:204 app/Frontend.php:182
 #: templates/publish-form.php:81 templates/publish-form.php:82
