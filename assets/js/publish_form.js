@@ -6,10 +6,6 @@ import Polyglot from 'node-polyglot';
 import '../scss/publish_form.scss';
 
 
-jQuery(function ($) {
-
-});
-
 window.addEventListener('DOMContentLoaded', (event) => {
 	const publishjobForm = document.querySelector('.otomaties-jobs-publish-form');
 
