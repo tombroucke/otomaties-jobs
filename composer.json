@@ -1,5 +1,6 @@
 {
     "name": "tombroucke/otomaties-jobs",
+    "description": "Allow people to post jobs. Moderate jobs before publishing",
     "autoload": {
         "psr-4": {
             "Otomaties\\Jobs\\": "app/"
