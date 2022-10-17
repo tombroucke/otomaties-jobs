@@ -54,7 +54,7 @@ class Frontend
          * class.
          */
         wp_enqueue_style($this->pluginName, Assets::find('css/main.css'), [], null);
-        if (publishJobPage()) {
+        if (publishJobPage() && get_the_ID() == publishJobPage()) {
             wp_enqueue_style($this->pluginName . '-publish_form', Assets::find('js/publish_form.css'), [], null);
         }
     }
@@ -78,7 +78,7 @@ class Frontend
          * class.
          */
 
-        if (publishJobPage()) {
+        if (publishJobPage() && get_the_ID() == publishJobPage()) {
             wp_enqueue_script($this->pluginName . '-publish_form', Assets::find('js/publish_form.js'), [], null, true);
         }
     }
