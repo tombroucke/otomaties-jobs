@@ -183,12 +183,12 @@ class Job
         );
 
         $args = wp_parse_args($args, $defaults);
-        $newPost = wp_insert_post($args);
+        $newPost = wp_insert_post($args, true);
 
-        if (is_int($newPost)) {
-            return new $class($newPost);
+        if (is_wp_error($newPost)) {
+            throw new \Exception($newPost->get_error_code());
         }
 
-        return $newPost;
+        return new $class($newPost);
     }
 }

@@ -30,6 +30,5 @@ class Assets
         } else {
             return $publicPath . $filename;
         }
-        return $file;
     }
 }

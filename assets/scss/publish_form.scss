@@ -1,1 +1,7 @@
 @import '~pikaday/css/pikaday.css';
+@import '~quill/dist/quill.snow.css';
+
+#job_description,
+#company_description {
+  height: 375px;
+}

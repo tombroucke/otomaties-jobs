@@ -22,5 +22,14 @@
         "allow-plugins": {
             "composer/installers": true
         }
+    },
+    "require-dev": {
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "php-stubs/acf-pro-stubs": "^6.0"
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpstan analyze app --memory-limit 512M"
+        ]
     }
 }

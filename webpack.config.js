@@ -6,6 +6,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = (env, argv) => ({
 	entry: {
@@ -95,6 +96,10 @@ module.exports = (env, argv) => ({
 	new StyleLintPlugin({
 		failOnError: argv.mode === 'production' ? true : false,
 	}),
+	new webpack.IgnorePlugin({
+		resourceRegExp: /^\.\/locale$/,
+		contextRegExp: /moment$/,
+	  })
 	],
 	externals: {
 		jquery: 'jQuery'

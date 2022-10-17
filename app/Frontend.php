@@ -25,23 +25,14 @@ class Frontend
     private $pluginName;
 
     /**
-     * The version of this plugin.
-     *
-     * @var      string    $version    The current version of this plugin.
-     */
-    private $version;
-
-    /**
      * Initialize the class and set its properties.
      *
      * @param      string    $pluginName       The name of the plugin.
-     * @param      string    $version    The version of this plugin.
      */
-    public function __construct($pluginName, $version)
+    public function __construct($pluginName)
     {
 
         $this->pluginName = $pluginName;
-        $this->version = $version;
     }
 
     /**
@@ -62,9 +53,9 @@ class Frontend
          * between the defined hooks and the functions defined in this
          * class.
          */
-        wp_enqueue_style($this->pluginName, Assets::find('css/main.css'), array(), null);
+        wp_enqueue_style($this->pluginName, Assets::find('css/main.css'), [], null);
         if (publishJobPage()) {
-            wp_enqueue_style($this->pluginName . '-publish_form', Assets::find('js/publish_form.css'), array(), null);
+            wp_enqueue_style($this->pluginName . '-publish_form', Assets::find('js/publish_form.css'), [], null);
         }
     }
 
@@ -87,47 +78,19 @@ class Frontend
          * class.
          */
 
-        wp_enqueue_script($this->pluginName, Assets::find('js/main.js'), array( 'jquery' ), null);
         if (publishJobPage()) {
-            wp_enqueue_script($this->pluginName . '-publish_form', Assets::find('js/publish_form.js'), array( 'jquery' ), null);
+            wp_enqueue_script($this->pluginName . '-publish_form', Assets::find('js/publish_form.js'), [], null, true);
         }
     }
 
     public function publishJobForm(string $content)
     {
         if (is_singular() && publishJobPage() && get_the_ID() == publishJobPage()) {
-            if (!empty($requiredFieldErrors)) {
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
             }
 
-            $jobTypes = get_terms([
-                'taxonomy' => 'job_employment_type',
-                'hide_empty' => false,
-            ]);
-
-            $jobType = filter_input(INPUT_POST, 'job_employment_type', FILTER_SANITIZE_NUMBER_INT);
-            $jobTitle = filter_input(INPUT_POST, 'job_title', FILTER_SANITIZE_STRING);
-            $jobDescription = filter_input(INPUT_POST, 'job_description', FILTER_SANITIZE_STRING);
-            $addressStreet = filter_input(INPUT_POST, 'address_street', FILTER_SANITIZE_STRING);
-            $addressStreetNumber = filter_input(INPUT_POST, 'address_street_number', FILTER_SANITIZE_STRING);
-            $addressPostcode = filter_input(INPUT_POST, 'address_postcode', FILTER_SANITIZE_NUMBER_INT);
-            $addressCity = filter_input(INPUT_POST, 'address_city', FILTER_SANITIZE_STRING);
-            $publicationDate = filter_input(INPUT_POST, 'publication_date', FILTER_SANITIZE_STRING);
-            $applicationDeadline = filter_input(INPUT_POST, 'application_deadline', FILTER_SANITIZE_STRING);
-            $companyName = filter_input(INPUT_POST, 'company_name', FILTER_SANITIZE_STRING);
-            $companyDescription = filter_input(INPUT_POST, 'company_description', FILTER_SANITIZE_STRING);
-            $companyContactName = filter_input(INPUT_POST, 'company_contact_name', FILTER_SANITIZE_STRING);
-            $companyWebsite = filter_input(INPUT_POST, 'company_website', FILTER_SANITIZE_STRING);
-            $companyEmail = filter_input(INPUT_POST, 'company_email', FILTER_SANITIZE_EMAIL);
-            $companyPhone = filter_input(INPUT_POST, 'company_phone', FILTER_SANITIZE_STRING);
-            $companyAddressStreet = filter_input(INPUT_POST, 'company_address_street', FILTER_SANITIZE_STRING);
-            $companyAddressStreetNumber = filter_input(INPUT_POST, 'company_address_street_number', FILTER_SANITIZE_STRING);
-            $companyAddressPostcode = filter_input(INPUT_POST, 'company_address_postcode', FILTER_SANITIZE_NUMBER_INT);
-            $companyAddressCity = filter_input(INPUT_POST, 'company_address_city', FILTER_SANITIZE_STRING);
             $jobStatus = filter_input(INPUT_GET, 'job_status', FILTER_SANITIZE_STRING);
-            $successMessage = $jobStatus && $jobStatus == 'pending' ? __('Job has been submitted for moderation.', 'otomaties-jobs') : '';
 
             $errors = [];
 
@@ -141,6 +104,12 @@ class Frontend
                 unset($_SESSION['otomaties_jobs_suspected_bot']);
             }
 
+            $jobDescription = $_POST['job_description'] ?? '';
+            $jobDescription = wp_kses($jobDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]);
+
+            $companyDescription = $_POST['company_description'] ?? '';
+            $companyDescription = wp_kses($companyDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]);
+
             $template = new Template('publish-form', [
                 'jobTypes' => get_terms([
                     'taxonomy' => 'job_employment_type',
@@ -148,7 +117,7 @@ class Frontend
                 ]),
                 'jobType' => filter_input(INPUT_POST, 'job_employment_type', FILTER_SANITIZE_NUMBER_INT),
                 'jobTitle' => filter_input(INPUT_POST, 'job_title', FILTER_SANITIZE_STRING),
-                'jobDescription' => filter_input(INPUT_POST, 'job_description', FILTER_SANITIZE_STRING),
+                'jobDescription' => $jobDescription,
                 'addressStreet' => filter_input(INPUT_POST, 'address_street', FILTER_SANITIZE_STRING),
                 'addressStreetNumber' => filter_input(INPUT_POST, 'address_street_number', FILTER_SANITIZE_STRING),
                 'addressPostcode' => filter_input(INPUT_POST, 'address_postcode', FILTER_SANITIZE_NUMBER_INT),
@@ -156,7 +125,7 @@ class Frontend
                 'publicationDate' => filter_input(INPUT_POST, 'publication_date', FILTER_SANITIZE_STRING),
                 'applicationDeadline' => filter_input(INPUT_POST, 'application_deadline', FILTER_SANITIZE_STRING),
                 'companyName' => filter_input(INPUT_POST, 'company_name', FILTER_SANITIZE_STRING),
-                'companyDescription' => filter_input(INPUT_POST, 'company_description', FILTER_SANITIZE_STRING),
+                'companyDescription' => $companyDescription,
                 'companyContactName' => filter_input(INPUT_POST, 'company_contact_name', FILTER_SANITIZE_STRING),
                 'companyWebsite' => filter_input(INPUT_POST, 'company_website', FILTER_SANITIZE_STRING),
                 'companyEmail' => filter_input(INPUT_POST, 'company_email', FILTER_SANITIZE_EMAIL),
@@ -180,15 +149,14 @@ class Frontend
         $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 
         if (publishJobPage() && $action && $action == 'otomaties_jobs_publish_job') {
-            if (!empty($requiredFieldErrors)) {
-                if (session_status() == PHP_SESSION_NONE) {
-                    session_start();
-                }
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
             }
             
             $jobType = filter_input(INPUT_POST, 'job_employment_type', FILTER_SANITIZE_STRING);
             $jobTitle = filter_input(INPUT_POST, 'job_title', FILTER_SANITIZE_STRING);
-            $jobDescription = filter_input(INPUT_POST, 'job_description', FILTER_SANITIZE_STRING);
+            $jobDescription = $_POST['job_description'] ?? '';
+            $jobDescription = wp_kses($jobDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]);
             $addressStreet = filter_input(INPUT_POST, 'address_street', FILTER_SANITIZE_STRING);
             $addressStreetNumber = filter_input(INPUT_POST, 'address_street_number', FILTER_SANITIZE_STRING);
             $addressPostcode = filter_input(INPUT_POST, 'address_postcode', FILTER_SANITIZE_NUMBER_INT);
@@ -196,7 +164,8 @@ class Frontend
             $publicationDate = filter_input(INPUT_POST, 'publication_date', FILTER_SANITIZE_STRING);
             $applicationDeadline = filter_input(INPUT_POST, 'application_deadline', FILTER_SANITIZE_STRING);
             $companyName = filter_input(INPUT_POST, 'company_name', FILTER_SANITIZE_STRING);
-            $companyDescription = filter_input(INPUT_POST, 'company_description', FILTER_SANITIZE_STRING);
+            $companyDescription = $_POST['company_description'] ?? '';
+            $companyDescription = wp_kses($companyDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]);
             $companyContactName = filter_input(INPUT_POST, 'company_contact_name', FILTER_SANITIZE_STRING);
             $companyWebsite = filter_input(INPUT_POST, 'company_website', FILTER_SANITIZE_STRING);
             $companyEmail = filter_input(INPUT_POST, 'company_email', FILTER_SANITIZE_EMAIL);

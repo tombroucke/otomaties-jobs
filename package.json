@@ -10,9 +10,12 @@
   "author": "Tom Broucke <tom@tombroucke.be>",
   "license": "MIT",
   "dependencies": {
+    "@tombroucke/otomaties-form-validator": "^1.0.5",
     "jquery-validation": "^1.19.3",
     "moment": "^2.29.1",
+    "node-polyglot": "^2.4.2",
     "pikaday": "^1.8.2",
+    "quill": "^1.3.7",
     "stylelint": "^14.0.1"
   },
   "devDependencies": {

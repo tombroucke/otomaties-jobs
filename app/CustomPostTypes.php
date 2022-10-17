@@ -193,13 +193,13 @@ class CustomPostTypes
             ->addTab('date', [
                 'label' => __('Date', 'otomaties-jobs')
             ])
-            ->addDatepicker('publication_date', [
+            ->addDatePicker('publication_date', [
                 'label' => __('Publication date', 'otomaties-jobs'),
                 'default_value' => date('Ymd'),
                 'display_format' => 'd-m-Y',
                 'return_format' => 'Ymd',
             ])
-            ->addDatepicker('application_deadline', [
+            ->addDatePicker('application_deadline', [
                 'label' => __('Application deadline', 'otomaties-jobs'),
                 'default_value' => date('Ymd', strtotime('+1 year')),
                 'display_format' => 'd-m-Y',
@@ -211,7 +211,7 @@ class CustomPostTypes
             ->addText('company_name', [
                 'label' => __('Name', 'otomaties-jobs'),
             ])
-            ->addTextArea('company_description', [
+            ->addTextarea('company_description', [
                 'label' => __('Description', 'otomaties-jobs'),
             ])
             ->addText('company_contact_name', [

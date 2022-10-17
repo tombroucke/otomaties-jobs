@@ -38,7 +38,10 @@
         <div class="col-12">
             <div class="mb-3">
                 <label for="job_description" class="form-label"><?php _e('Description', 'otomaties-jobs'); ?><span class="text-danger"> *</span></label>
-                <textarea name="job_description" id="job_description" cols="30" rows="10" placeholder="<?php _e('Description', 'otomaties-jobs'); ?>" class="form-control" required><?php echo wp_kses($jobDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?></textarea>
+                <div id="job_description">
+                    <?php echo wp_kses($jobDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?>
+                </div>
+                <textarea name="job_description" style="display: none;" cols="30" rows="10" placeholder="<?php _e('Description', 'otomaties-jobs'); ?>" class="form-control" required><?php echo wp_kses($jobDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?></textarea>
             </div>
         </div>
     </div>
@@ -97,7 +100,10 @@
         <div class="col-12">
             <div class="mb-3">
                 <label for="company_description" class="form-label"><?php _e('Description', 'otomaties-jobs'); ?><span class="text-danger"> *</span></label>
-                <textarea class="form-control" cols="30" rows="10" name="company_description" id="company_description" placeholder="<?php _e('Description', 'otomaties-jobs'); ?>" required><?php echo wp_kses($companyDescription, ['p' => [], 'br' => [], 'strong' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => []]); ?></textarea>
+                <div id="company_description">
+                    <?php echo wp_kses($companyDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?>
+                </div>
+                <textarea name="company_description" style="display: none;" cols="30" rows="10" placeholder="<?php _e('Description', 'otomaties-jobs'); ?>" class="form-control" required><?php echo wp_kses($companyDescription, ['a' => ['href' => [], 'title' => [], 'target' => []], 'br' => [], 'em' => [], 'h1' => [], 'h2' => [], 'h3' => [], 'h4' => [], 'h5' => [], 'h6' => [], 'ul' => [], 'ol' => [], 'li' => [], 'p' => [], 'strong' => []]); ?></textarea>
             </div>
         </div>
     </div>
