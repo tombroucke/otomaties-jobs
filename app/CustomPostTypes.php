@@ -211,7 +211,7 @@ class CustomPostTypes
             ->addText('company_name', [
                 'label' => __('Name', 'otomaties-jobs'),
             ])
-            ->addTextarea('company_description', [
+            ->addWysiwyg('company_description', [
                 'label' => __('Description', 'otomaties-jobs'),
             ])
             ->addText('company_contact_name', [
