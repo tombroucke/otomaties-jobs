@@ -1,5 +1,4 @@
 const path = require('path');
-const glob = require('glob');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -16,7 +15,7 @@ module.exports = (env, argv) => ({
 	},
 	output: {
 		path: __dirname + '/public',
-		filename: 'js/[name].[contenthash].js',
+		filename: 'js/[name].[contenthash:6].js',
 		publicPath: '',
 	},
 	module: {
@@ -43,35 +42,6 @@ module.exports = (env, argv) => ({
 			{loader: "postcss-loader"}
 			]
 		},
-		{
-			test: /\.(jpg|png|gif|svg)$/,
-			use: [
-			{
-				loader: 'file-loader',
-				options: {
-					name: "./images/[name].[ext]",
-					publicPath: argv.mode === 'production' ? '../' : ''
-				},
-			},
-			{
-				loader: 'image-webpack-loader',
-				options: {
-					disable: argv.mode !== 'production',
-				},
-			}
-			]
-		},
-		{
-			test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-			exclude: [/images/],
-			use: [{
-				loader: 'file-loader',
-				options: {
-					name: '[name].[ext]',
-					outputPath: 'fonts/'
-				}
-			}]
-		}
 		]
 	},
 	optimization: {
@@ -79,8 +49,8 @@ module.exports = (env, argv) => ({
 	},
 	plugins: [
 	new MiniCssExtractPlugin({
-		filename: "css/[name].min.css",
-		chunkFilename: "[id].css"
+		filename: "css/[name].[contenthash:6].min.css",
+		chunkFilename: "[name].[contenthash:6].css"
 	}),
 	new AssetsPlugin({
 		path: path.join(__dirname, 'public'),

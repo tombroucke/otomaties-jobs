@@ -1,14 +1,14 @@
 {
   "main": {
-    "css": "css/main.min.css",
-    "js": "js/main.31d6cfe0d16ae931b73c.js"
+    "css": "css/main.22fed9.min.css",
+    "js": "js/main.31d6cf.js"
   },
   "admin": {
-    "css": "css/admin.min.css",
-    "js": "js/admin.31d6cfe0d16ae931b73c.js"
+    "css": "css/admin.31d6cf.min.css",
+    "js": "js/admin.31d6cf.js"
   },
   "publish_form": {
-    "css": "css/publish_form.min.css",
-    "js": "js/publish_form.0a2a6eb802c2fb3d3f28.js"
+    "css": "css/publish_form.d61ed0.min.css",
+    "js": "js/publish_form.036ac9.js"
   }
 }

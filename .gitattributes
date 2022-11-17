@@ -1,0 +1,12 @@
+* text=auto
+
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.stylelintrc.json export-ignore
+/phpstan.neon export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml.dist export-ignore
+/README.md export-ignore
+/webpack.config.js export-ignore
+/tests export-ignore
