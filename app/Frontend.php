@@ -262,10 +262,31 @@ class Frontend
     {
         if (is_singular('job')) {
             $job = new Job(get_the_ID());
+
+            $meta = [];
+            $employmentTypes = $job->employmentTypes();
+            if (!empty($employmentTypes)) {
+                $meta['employment_type'] = [
+                    'label' => __('Employment type', 'otomaties-jobs'),
+                    'value' => implode(', ', $employmentTypes),
+                ];
+            }
+            $publicationDate = $job->publicationDate();
+            if ($publicationDate) {
+                $meta['publication_date'] = [
+                    'label' => __('Publication date', 'otomaties-jobs'),
+                    'value' => $job->publicationDate()->format(get_option('date_format')),
+                ];
+            }
+            $applicationDeadline = $job->applicationDeadline();
+            if ($applicationDeadline) {
+                $meta['application_deadline'] = [
+                    'label' => __('Application deadline', 'otomaties-jobs'),
+                    'value' => $job->applicationDeadline()->format(get_option('date_format')),
+                ];
+            }
             $variables = apply_filters('otomaties_jobs_job_content', [
-                'employmentTypes' => $job->employmentTypes(),
-                'publicationDate' => $job->publicationDate(),
-                'applicationDeadline' => $job->applicationDeadline(),
+                'meta' => $meta,
                 'description' => $content,
                 'location' => $job->location(),
                 'applicationFormShortcode' => $job->applicationFormShortcode(),

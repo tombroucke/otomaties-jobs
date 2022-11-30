@@ -1,23 +1,15 @@
+<?php if (!empty($meta)) : ?>
 <table class="table">
-    <?php if (isset($employmentTypes) && $employmentTypes) : ?>
+    <tbody>
+        <?php foreach ($meta as $metaItem) : ?>
         <tr>
-            <th><?php _e('Employment type', 'otomaties-jobs'); ?></th>
-            <td><?php esc_html_e(implode(', ', $employmentTypes)); ?></td>
+            <th scope="row"><?php esc_html_e($metaItem['label']); ?></th>
+            <td><?php esc_html_e($metaItem['value']); ?></td>
         </tr>
-    <?php endif; ?>
-    <?php if (isset($publicationDate) && $publicationDate) : ?>
-        <tr>
-            <th><?php _e('Publication date', 'otomaties-jobs'); ?></th>
-            <td><?php esc_html_e($publicationDate->format(get_option('date_format'))); ?></td>
-        </tr>
-    <?php endif; ?>
-    <?php if (isset($applicationDeadline) && $applicationDeadline) : ?>
-        <tr>
-            <th><?php _e('Application deadline', 'otomaties-jobs'); ?></th>
-            <td><?php esc_html_e($applicationDeadline->format(get_option('date_format'))); ?></td>
-        </tr>
-    <?php endif; ?>
+        <?php endforeach; ?>
+    </tbody>
 </table>
+<?php endif; ?>
 
 <?php if (isset($description) && $description && '' != $description) : ?>
     <h2><?php _e('Description', 'otomaties-jobs'); ?></h2>
