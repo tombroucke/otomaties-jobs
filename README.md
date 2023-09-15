@@ -32,3 +32,25 @@ The registration form uses default bootstrap classes. Following classes should b
 - form-label
 - form-control
 - text-danger
+
+## Customization
+
+### Allow classes in job content
+```php
+add_filter('otomaties_jobs_job_content_allowed_html', function ($allowedHtml) {
+    foreach ($allowedHtml as $key => $value) {
+        $allowedHtml[$key]['class'] = [];
+    }
+    return $allowedHtml;
+});
+```
+
+### Add svg support to job content
+```php
+add_filter('otomaties_jobs_job_content_allowed_html', function ($allowedHtml) {
+    $allowedHtml['svg'] = ['class' => [], 'xmlns' => [], 'viewbox' => [], 'fill' => []];
+    $allowedHtml['path'] = ['d' => [], 'fill' => []];
+	$allowedHtml['circle'] = ['cx' => [], 'cy' => [], 'r' => []];
+    return $allowedHtml;
+});
+```
