@@ -5,7 +5,7 @@ namespace Otomaties\Jobs;
 /**
  * Plugin Name:       Otomaties Jobs module
  * Description:       Allow people to post jobs. Moderate jobs before publishing
- * Version:           2.3.0
+ * Version:           2.4.0
  * Author:            Tom Broucke
  * Author URI:        https://tombroucke.be/
  * License:           GPL-2.0+
