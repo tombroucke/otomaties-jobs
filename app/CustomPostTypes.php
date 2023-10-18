@@ -32,7 +32,7 @@ class CustomPostTypes
                 'publicly_queryable' => true,
                 'labels' => $this->post_type_labels($singular_name, $plural_name),
                 'dashboard_activity' => true,
-                'supports' => ['title', 'editor', 'revisions', 'author'],
+                'supports' => ['title', 'editor', 'revisions', 'author', 'excerpt'],
 
             ),
             array(
