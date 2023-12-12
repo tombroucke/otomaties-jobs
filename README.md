@@ -45,6 +45,14 @@ add_filter('otomaties_jobs_job_content_allowed_html', function ($allowedHtml) {
 });
 ```
 
+### Allow all html tags in job content
+```php
+add_filter('otomaties_jobs_job_content_allowed_html', function (){
+    global $allowedposttags;
+    return $allowedposttags;
+});
+```
+
 ### Add svg support to job content
 ```php
 add_filter('otomaties_jobs_job_content_allowed_html', function ($allowedHtml) {
