@@ -10,7 +10,7 @@
   "author": "Tom Broucke <tom@tombroucke.be>",
   "license": "MIT",
   "dependencies": {
-    "@tombroucke/otomaties-form-validator": "^1.0.5",
+    "@tombroucke/otomaties-form-validator": "^1.0.8",
     "moment": "^2.29.4",
     "node-polyglot": "^2.4.2",
     "pikaday": "^1.8.2",

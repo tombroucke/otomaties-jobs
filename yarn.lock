@@ -99,10 +99,10 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
 
-"@tombroucke/otomaties-form-validator@^1.0.5":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@tombroucke/otomaties-form-validator/-/otomaties-form-validator-1.0.6.tgz#688f4a2f35307471224f1d5090013d219c846ea0"
-  integrity sha512-Wkb5Fm8fynTn3N8Ze/wdKy8nbV3jLso6hcTn5BZuSrwVyrzR+AKBdPw2b5kR9zkO9OP6HOEk/1Zsy+jrPT2e5A==
+"@tombroucke/otomaties-form-validator@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@tombroucke/otomaties-form-validator/-/otomaties-form-validator-1.0.8.tgz#95808d9cbdb8a04af0df7b6ca268519d50f23565"
+  integrity sha512-wvTdWbAoLkqMJeMKzoRWAQ8wzN8JNZcd7QH00KDx1vLsYG6UaXCZpY2LL5lTnf3juNSDC89nsnxqwc2cw28EVA==
   dependencies:
     validator "^13.7.0"
 
